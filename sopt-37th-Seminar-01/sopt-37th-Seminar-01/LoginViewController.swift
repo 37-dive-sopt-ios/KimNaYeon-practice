@@ -27,6 +27,7 @@ final class LoginViewController: UIViewController {
         textField.placeholder = "아이디"
         textField.borderStyle = .none // 기본 borderStyle 제거
         textField.backgroundColor = .grey200
+        textField.textColor = .grey400
         textField.layer.cornerRadius = 3
         textField.font = .subhead4
         textField.addLeftPadding()
@@ -39,8 +40,10 @@ final class LoginViewController: UIViewController {
         textField.borderStyle = .none // 기본 borderStyle 제거
         textField.isSecureTextEntry = true
         textField.backgroundColor = .grey200
+        textField.textColor = .grey400
         textField.layer.cornerRadius = 3
         textField.font = .subhead4
+        textField.clearButtonMode = .whileEditing
         textField.addLeftPadding()
         return textField
     }()
@@ -54,6 +57,14 @@ final class LoginViewController: UIViewController {
         button.titleLabel?.font = .subhead1
         button.addTarget(self, action: #selector(loginButtonDidTap), for: .touchUpInside)
         return button
+    }()
+    
+    private lazy var loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.center = CGPoint(x: view.frame.midX, y: view.frame.midY)
+        indicator.color = .primaryOrange
+        indicator.hidesWhenStopped = true
+        return indicator
     }()
     
     
@@ -70,7 +81,7 @@ final class LoginViewController: UIViewController {
     // MARK: - UI & Layout
     
     private func setLayout() {
-        [titleLabel, idTextField, passwordTextField, loginButton].forEach{
+        [titleLabel, idTextField, passwordTextField, loginButton, loadingIndicator].forEach{
             self.view.addSubview($0)
         }
     }
@@ -91,8 +102,11 @@ final class LoginViewController: UIViewController {
     
     @objc
     private func loginButtonDidTap() {
-//        presentToWelcomeVC()
-        pushToWelcomeVC()
+        loadingIndicator.startAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.loadingIndicator.stopAnimating()
+            self.pushToWelcomeVC()
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
