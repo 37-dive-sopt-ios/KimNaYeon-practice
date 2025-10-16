@@ -34,6 +34,7 @@ final class WelcomeViewController: UIViewController {
         button.backgroundColor = .primaryOrange
         button.setTitle("메인으로", for: .normal)
         button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 6
         button.titleLabel?.font = .subhead1
         return button
     }()
@@ -43,6 +44,7 @@ final class WelcomeViewController: UIViewController {
         button.backgroundColor = .grey200
         button.setTitle("다시 로그인", for: .normal)
         button.setTitleColor(.grey300, for: .normal)
+        button.layer.cornerRadius = 6
         button.titleLabel?.font = .subhead1
         button.addTarget(self, action: #selector(backToLoginButtonDidTap), for: .touchUpInside)
         return button
