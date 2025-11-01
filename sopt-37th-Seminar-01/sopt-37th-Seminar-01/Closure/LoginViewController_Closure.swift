@@ -1,0 +1,125 @@
+//
+//  LoginViewController.swift
+//  sopt-37th-Seminar-01
+//
+//  Created by 김나연 on 10/16/25.
+//
+
+import UIKit
+
+final class LoginViewController_Closure: UIViewController {
+    
+    
+    // MARK: - UI Components
+    
+    lazy var titleLabel: UILabel = {
+        let label = UILabel(frame: CGRect(x: 69.5, y: 161, width: 236, height: 44))
+        label.text = "동네라서 가능한 모든 것\n당근에서 가까운 이웃과 함께해요."
+        label.textColor = .black
+        label.font = .subhead1
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        return label
+    }()
+    
+    lazy var idTextField: UITextField = {
+        let textField = UITextField(frame: CGRect(x: 20, y: 276, width: 335, height: 52))
+        textField.placeholder = "아이디"
+        textField.borderStyle = .none // 기본 borderStyle 제거
+        textField.backgroundColor = .grey200
+        textField.textColor = .grey400
+        textField.layer.cornerRadius = 3
+        textField.font = .subhead4
+        textField.addLeftPadding()
+        return textField
+    }()
+    
+    lazy var passwordTextField: UITextField = {
+        let textField = UITextField(frame: CGRect(x: 20, y: 335, width: 335, height: 52))
+        textField.placeholder = "비밀번호"
+        textField.borderStyle = .none // 기본 borderStyle 제거
+        textField.isSecureTextEntry = true
+        textField.backgroundColor = .grey200
+        textField.textColor = .grey400
+        textField.layer.cornerRadius = 3
+        textField.font = .subhead4
+        textField.clearButtonMode = .whileEditing
+        textField.addLeftPadding()
+        return textField
+    }()
+    
+    lazy var loginButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 20, y: 422, width: 335, height: 57))
+        button.setTitle("로그인하기", for: .normal)
+        button.backgroundColor = .primaryOrange
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 6
+        button.titleLabel?.font = .subhead1
+        button.addTarget(self, action: #selector(loginButtonDidTap), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.center = CGPoint(x: view.frame.midX, y: view.frame.midY)
+        indicator.color = .primaryOrange
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
+    
+    // MARK: - Life Cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .white
+        setLayout()
+    }
+    
+    
+    // MARK: - UI & Layout
+    
+    private func setLayout() {
+        [titleLabel, idTextField, passwordTextField, loginButton, loadingIndicator].forEach{
+            self.view.addSubview($0)
+        }
+    }
+    
+    
+    // MARK: - Function
+    
+    private func presentToWelcomeVC() {
+        let welcomeViewController = WelcomeViewController_Closure()
+        welcomeViewController.modalPresentationStyle = .formSheet
+        self.present(welcomeViewController, animated: true)
+    }
+    private func pushToWelcomeVC() {
+        let welcomeViewController = WelcomeViewController_Closure()
+        welcomeViewController.name = idTextField.text
+        welcomeViewController.completionHandler = { [weak self] message in
+            self?.handleCompletion(message: message)
+        }
+        self.navigationController?.pushViewController(welcomeViewController, animated: true)
+    }
+    
+    private func handleCompletion(message: String) {
+        titleLabel.text = message
+        idTextField.text = ""
+        passwordTextField.text = ""
+        loginButton.setTitle("다시 로그인하기", for: .normal)
+    }
+    
+    @objc
+    private func loginButtonDidTap() {
+        loadingIndicator.startAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.loadingIndicator.stopAnimating()
+            self.pushToWelcomeVC()
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+}
