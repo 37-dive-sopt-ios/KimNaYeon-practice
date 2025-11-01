@@ -1,5 +1,5 @@
 //
-//  ScrollViewViewController.swift
+//  REDViewController.swift
 //  sopt-37th-Seminar-01
 //
 //  Created by 김나연 on 10/18/25.
