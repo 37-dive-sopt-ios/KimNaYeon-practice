@@ -1,8 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Ellipse 4.pdf",
-      "idiom" : "universal"
+      "filename" : "Frame 75.svg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
