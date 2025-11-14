@@ -1,0 +1,12 @@
+//
+//  environment.xcconfig
+//  sopt-37th-Seminar-01
+//
+//  Created by 김나연 on 11/8/25.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
+enum Environment {
+  static let baseURL: String = "http://15.164.129.239"
+}
