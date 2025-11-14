@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		338621192EA381E900DDE4E5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 338621182EA381E900DDE4E5 /* SnapKit */; };
+		338B60972EBF20B4000626C0 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 338B60962EBF20B4000626C0 /* Config.xcconfig */; };
 		33FAFA832EB5C6C9004CB091 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 33FAFA822EB5C6C9004CB091 /* Then */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3356494C2EA0A6770097B1B6 /* sopt-37th-Seminar-01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sopt-37th-Seminar-01.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		338B60962EBF20B4000626C0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -52,6 +54,7 @@
 		335649432EA0A6760097B1B6 = {
 			isa = PBXGroup;
 			children = (
+				338B60962EBF20B4000626C0 /* Config.xcconfig */,
 				3356494E2EA0A6770097B1B6 /* sopt-37th-Seminar-01 */,
 				3356494D2EA0A6770097B1B6 /* Products */,
 			);
@@ -135,6 +138,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				338B60972EBF20B4000626C0 /* Config.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
